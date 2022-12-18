@@ -4,3 +4,4 @@ torchaudio
 numpy
 pandas
 matplotlib
+scipy
