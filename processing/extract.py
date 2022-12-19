@@ -1,10 +1,6 @@
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
-import torch
 import os
-import scipy.io
 
 NUM_DATA = 375974  # Number of images in training data
 DATA_RES_X = 45  # Resolution of each image horizontally

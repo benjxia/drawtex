@@ -1,6 +1,15 @@
-import scipy.io as scio
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import os
 
-data = scio.loadmat("./symbols_dataset_final.mat")
+idx = 300000
 
-label_matrix = data["LableMatrix"]
-print(len(label_matrix[0]))
+data: np.ndarray = np.load("./data/data_matrix.npy")
+label: np.ndarray = np.load("./data/label_matrix.npy")
+print(label[idx])
+classes = os.listdir("./data/extracted_images")
+mappings = dict(zip(classes, range(len(classes))))
+print(classes[label[idx]])
+plt.imshow(data[idx], cmap="gray", interpolation="none")
+plt.show()
