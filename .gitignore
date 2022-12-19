@@ -1,3 +1,8 @@
+# ide config
 .vscode
 .idea
+
+# data, theyre beefy files
 data/extracted_images
+*.npy
+*.mat
