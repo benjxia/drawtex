@@ -20,3 +20,5 @@ Root
 ├── ...
 ```
 Note that unzipping `archive.zip` from the direct download will get you an **incomplete** `extracted_images` folder, unzip the `.rar` file for the complete dataset.
+
+`ldots`, `prime`, `ascii 124 (|)`, and `,` were removed from the dataset because they were redundant/unnecessary.
