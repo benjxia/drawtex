@@ -8,22 +8,8 @@ import torchvision.transforms as transforms
 
 
 class DrawtexDataset(Dataset):
-    classes: list[str] = ['!', '(', ')', '+', ',', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '=', 'A',
-                          'alpha', 'ascii_124', 'b', 'beta', 'C', 'cos', 'd', 'Delta', 'div', 'e', 'exists', 'f',
-                          'forall', 'forward_slash', 'G', 'gamma', 'geq', 'gt', 'H', 'i', 'in', 'infty', 'int', 'j',
-                          'k', 'l', 'lambda', 'ldots', 'leq', 'lim', 'log', 'lt', 'M', 'mu', 'N', 'neq', 'o', 'p',
-                          'phi', 'pi', 'pm', 'prime', 'q', 'R', 'rightarrow', 'S', 'sigma', 'sin', 'sqrt', 'sum', 'T',
-                          'tan', 'theta', 'times', 'u', 'v', 'w', 'X', 'y', 'z', '[', ']', '{', '}']
-    mapping: dict[str, int] = {'!': 0, '(': 1, ')': 2, '+': 3, ',': 4, '-': 5, '0': 6, '1': 7, '2': 8, '3': 9, '4': 10,
-                               '5': 11, '6': 12, '7': 13, '8': 14, '9': 15, '=': 16, 'A': 17, 'alpha': 18,
-                               'ascii_124': 19, 'b': 20, 'beta': 21, 'C': 22, 'cos': 23, 'd': 24, 'Delta': 25,
-                               'div': 26, 'e': 27, 'exists': 28, 'f': 29, 'forall': 30, 'forward_slash': 31, 'G': 32,
-                               'gamma': 33, 'geq': 34, 'gt': 35, 'H': 36, 'i': 37, 'in': 38, 'infty': 39, 'int': 40,
-                               'j': 41, 'k': 42, 'l': 43, 'lambda': 44, 'ldots': 45, 'leq': 46, 'lim': 47, 'log': 48,
-                               'lt': 49, 'M': 50, 'mu': 51, 'N': 52, 'neq': 53, 'o': 54, 'p': 55, 'phi': 56, 'pi': 57,
-                               'pm': 58, 'prime': 59, 'q': 60, 'R': 61, 'rightarrow': 62, 'S': 63, 'sigma': 64,
-                               'sin': 65, 'sqrt': 66, 'sum': 67, 'T': 68, 'tan': 69, 'theta': 70, 'times': 71, 'u': 72,
-                               'v': 73, 'w': 74, 'X': 75, 'y': 76, 'z': 77, '[': 78, ']': 79, '{': 80, '}': 81}
+    classes: list[str] = ['!', '(', ')', '+', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '=', 'A', 'alpha', 'b', 'beta', 'C', 'cos', 'd', 'Delta', 'div', 'e', 'exists', 'f', 'forall', 'forward_slash', 'G', 'gamma', 'geq', 'gt', 'H', 'i', 'in', 'infty', 'int', 'j', 'k', 'l', 'lambda', 'leq', 'lim', 'log', 'lt', 'M', 'mu', 'N', 'neq', 'o', 'p', 'phi', 'pi', 'pm', 'q', 'R', 'rightarrow', 'S', 'sigma', 'sin', 'sqrt', 'sum', 'T', 'tan', 'theta', 'times', 'u', 'v', 'w', 'X', 'y', 'z', '[', ']', '{', '}']
+    mapping: dict[str, int] = {'!': 0, '(': 1, ')': 2, '+': 3, '-': 4, '0': 5, '1': 6, '2': 7, '3': 8, '4': 9, '5': 10, '6': 11, '7': 12, '8': 13, '9': 14, '=': 15, 'A': 16, 'alpha': 17, 'b': 18, 'beta': 19, 'C': 20, 'cos': 21, 'd': 22, 'Delta': 23, 'div': 24, 'e': 25, 'exists': 26, 'f': 27, 'forall': 28, 'forward_slash': 29, 'G': 30, 'gamma': 31, 'geq': 32, 'gt': 33, 'H': 34, 'i': 35, 'in': 36, 'infty': 37, 'int': 38, 'j': 39, 'k': 40, 'l': 41, 'lambda': 42, 'leq': 43, 'lim': 44, 'log': 45, 'lt': 46, 'M': 47, 'mu': 48, 'N': 49, 'neq': 50, 'o': 51, 'p': 52, 'phi': 53, 'pi': 54, 'pm': 55, 'q': 56, 'R': 57, 'rightarrow': 58, 'S': 59, 'sigma': 60, 'sin': 61, 'sqrt': 62, 'sum': 63, 'T': 64, 'tan': 65, 'theta': 66, 'times': 67, 'u': 68, 'v': 69, 'w': 70, 'X': 71, 'y': 72, 'z': 73, '[': 74, ']': 75, '{': 76, '}': 77}
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
 
     def __init__(self, transform=None):
