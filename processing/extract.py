@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 import os
 
-NUM_DATA = 375974  # Number of images in training data
-DATA_RES_X = 45  # Resolution of each image horizontally
-DATA_RES_Y = 45  # Resolution of each image vertically
-DATA_PATH = "../data/extracted_images"
+NUM_DATA: int = 375974  # Number of images in training data
+DATA_RES_X: int = 45  # Resolution of each image horizontally
+DATA_RES_Y: int = 45  # Resolution of each image vertically
+DATA_PATH: str = "../data/extracted_images"
 
 # Matrix of all images, data_matrix[i] is i'th image
 data_matrix = np.ndarray(shape=(NUM_DATA, DATA_RES_Y, DATA_RES_X, 1),
@@ -15,8 +15,7 @@ data_matrix = np.ndarray(shape=(NUM_DATA, DATA_RES_Y, DATA_RES_X, 1),
 label_matrix = np.ndarray(shape=(NUM_DATA),
                           dtype=np.uint8)
 
-
-THRESH = 128 # Threshold for image grayscale -> B/W conversion
+THRESH: int = 128  # Threshold for image grayscale -> B/W conversion
 
 if __name__ == "__main__":  # String to index mapping
     classes: list[str] = os.listdir(DATA_PATH)  # Index to string mapping

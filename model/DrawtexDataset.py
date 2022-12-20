@@ -24,6 +24,7 @@ class DrawtexDataset(Dataset):
                                'pm': 58, 'prime': 59, 'q': 60, 'R': 61, 'rightarrow': 62, 'S': 63, 'sigma': 64,
                                'sin': 65, 'sqrt': 66, 'sum': 67, 'T': 68, 'tan': 69, 'theta': 70, 'times': 71, 'u': 72,
                                'v': 73, 'w': 74, 'X': 75, 'y': 76, 'z': 77, '[': 78, ']': 79, '{': 80, '}': 81}
+    device: str = "cuda" if torch.cuda.is_available() else "cpu"
 
     def __init__(self, transform=None):
         self.data: np.ndarray = np.load("../data/data_matrix.npy")
@@ -34,16 +35,16 @@ class DrawtexDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, item: any) -> tuple[torch.Tensor, torch.Tensor]:
-        img = self.data[item]
+        img: np.ndarray = self.data[item]
         label = self.labels[item]
 
         if self.transform is not None:
-            img: torch.Tensor = self.transform(img)
+            img_tensor: torch.Tensor = self.transform(img).to(self.device)
         else:
-            img: torch.Tensor = torch.from_numpy(img)
+            img_tensor: torch.Tensor = torch.from_numpy(img).to(self.device)
 
-        label = torch.tensor(label)
-        return img, label
+        label_tensor: torch.Tensor = torch.tensor(label).to(self.device)
+        return img_tensor, label_tensor
 
 
 # Debugging stuff below
@@ -60,6 +61,6 @@ if __name__ == "__main__":
 
     iter = enumerate(train_load)
     idx, (img, lab) = next(iter)
-    print(training_set.classes[lab[0]])
-    plt.imshow(img[0][0])
+    plt.title(training_set.classes[lab[0]])
+    plt.imshow(img[0][0], cmap="gray")
     plt.show()
