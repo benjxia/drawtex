@@ -20,7 +20,8 @@ THRESH: int = 128  # Threshold for image grayscale -> B/W conversion
 if __name__ == "__main__":  # String to index mapping
     classes: list[str] = os.listdir(DATA_PATH)  # Index to string mapping
     mappings: dict[str, int] = dict(zip(classes, range(len(classes))))  # String to index mapping
-
+    print(classes)
+    print(mappings)
     i = 0
     for directory in classes:
         for file in os.listdir(f"{DATA_PATH}/{directory}"):
