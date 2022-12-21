@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import os
 
-NUM_DATA: int = 375974  # Number of images in training data
+NUM_DATA: int = 371791  # Number of images in training data
 DATA_RES_X: int = 45  # Resolution of each image horizontally
 DATA_RES_Y: int = 45  # Resolution of each image vertically
 DATA_PATH: str = "../data/extracted_images"
