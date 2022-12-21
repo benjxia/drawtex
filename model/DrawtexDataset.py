@@ -15,8 +15,8 @@ class DrawtexDataset(Dataset):
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
 
     def __init__(self, transform=None):
-        self.data: np.ndarray = np.load("../data/data_matrix.npy")
-        self.labels: np.ndarray = np.load("../data/label_matrix.npy")
+        self.data: np.ndarray = np.load("./data/data_matrix.npy")
+        self.labels: np.ndarray = np.load("./data/label_matrix.npy")
         self.transform = transform
 
     def __len__(self) -> int:
@@ -27,11 +27,11 @@ class DrawtexDataset(Dataset):
         label = self.labels[item]
 
         if self.transform is not None:
-            img_tensor: torch.Tensor = self.transform(img).to(self.device)
+            img_tensor: torch.Tensor = self.transform(img)
         else:
-            img_tensor: torch.Tensor = torch.from_numpy(img).to(self.device)
+            img_tensor: torch.Tensor = torch.from_numpy(img)
 
-        label_tensor: torch.Tensor = torch.tensor(label).to(self.device)
+        label_tensor: torch.Tensor = torch.tensor(label)
         return img_tensor, label_tensor
 
 
@@ -48,6 +48,6 @@ if __name__ == "__main__":
 
     iter = enumerate(train_load)
     idx, (img, lab) = next(iter)
-    plt.title(training_set.classes[lab[0]])
-    plt.imshow(img[0][0], cmap="gray")
+    plt.title(training_set.classes[lab[0].cpu()])
+    plt.imshow(img[0][0].cpu(), cmap="gray")
     plt.show()

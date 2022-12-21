@@ -1,7 +1,7 @@
 # ide config
 .vscode
 .idea
-
+*.pth
 # data, theyre beefy files
 data/extracted_images
 *.npy
