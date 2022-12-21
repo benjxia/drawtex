@@ -4,5 +4,6 @@
 *.pth
 # data, theyre beefy files
 data/extracted_images
+data/HASYv2
 *.npy
 *.mat

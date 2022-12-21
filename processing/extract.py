@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import os
+import matplotlib.pyplot as plt
+from skimage import morphology
 
 NUM_DATA: int = 371791  # Number of images in training data
 DATA_RES_X: int = 45  # Resolution of each image horizontally
