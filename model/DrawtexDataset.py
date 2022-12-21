@@ -15,8 +15,8 @@ class DrawtexDataset(Dataset):
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
 
     def __init__(self, transform=None):
-        self.data: np.ndarray = np.load("./data/data_matrix.npy")
-        self.labels: np.ndarray = np.load("./data/label_matrix.npy")
+        self.data: np.ndarray = np.load("../data/data_matrix.npy")
+        self.labels: np.ndarray = np.load("../data/label_matrix.npy")
         self.transform = transform
 
     def __len__(self) -> int:
