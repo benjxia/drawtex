@@ -4,7 +4,7 @@ import cv2
 import matplotlib.pyplot as plt
 from skimage import morphology
 
-
+# Process new images to meet dataset standards
 def standardize(img):
     """
     Converts an image to meet the standards of the dataset: 45x45 black/white skeletonized

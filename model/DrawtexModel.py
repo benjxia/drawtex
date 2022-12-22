@@ -4,18 +4,18 @@ class DrawtexModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.relu = nn.ReLU()
-        self.conv1 = nn.Conv2d(1, 150, 9, bias=False)  # 45x45 -> 37x37
-        self.conv1_bn = nn.BatchNorm2d(150)
-        self.conv2 = nn.Conv2d(150, 200, 9, bias=False)  # 37x37 -> 29x29
+        self.conv1 = nn.Conv2d(1, 200, 9, bias=False)  # 45x45 -> 37x37
+        self.conv1_bn = nn.BatchNorm2d(200)
+        self.conv2 = nn.Conv2d(200, 250, 9, bias=False)  # 37x37 -> 29x29
         self.conv2_bn = nn.BatchNorm2d(200)
         self.conv3 = nn.Conv2d(200, 300, 9, bias=False)  # 29x29 -> 21x21
         self.conv3_bn = nn.BatchNorm2d(300)
         self.conv4 = nn.Conv2d(300, 500, 9, bias=False)  # 21x21 -> 13x13
         self.conv4_bn = nn.BatchNorm2d(500)
-        self.conv5 = nn.Conv2d(500, 800, 9, bias=False)  # 13x13 -> 5x5
+        self.conv5 = nn.Conv2d(500, 800, 5, bias=False)  # 13x13 -> 9x9
         self.conv5_bn = nn.BatchNorm2d(800)
-        self.lin1 = nn.Linear(20000, 326, bias=False)
-        self.lin1_bn = nn.BatchNorm1d(326)
+        self.lin1 = nn.Linear(64800, 331, bias=False)
+        self.lin1_bn = nn.BatchNorm1d(331)
 
     def forward(self, x: torch.Tensor):
         x: torch.Tensor = self.relu(self.conv1_bn(self.conv1(x)))
