@@ -19,6 +19,7 @@ label_matrix = np.ndarray(shape=(NUM_DATA),
 
 THRESH: int = 128  # Threshold for image grayscale -> B/W conversion
 
+# Used for version 1, converts all images in modified CROHME dataset into serialized numpy arrays.
 if __name__ == "__main__":  # String to index mapping
     classes: list[str] = os.listdir(DATA_PATH)  # Index to string mapping
     mappings: dict[str, int] = dict(zip(classes, range(len(classes))))  # String to index mapping
