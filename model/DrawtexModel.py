@@ -7,8 +7,8 @@ class DrawtexModel(nn.Module):
         self.conv1 = nn.Conv2d(1, 200, 9, bias=False)  # 45x45 -> 37x37
         self.conv1_bn = nn.BatchNorm2d(200)
         self.conv2 = nn.Conv2d(200, 250, 9, bias=False)  # 37x37 -> 29x29
-        self.conv2_bn = nn.BatchNorm2d(200)
-        self.conv3 = nn.Conv2d(200, 300, 9, bias=False)  # 29x29 -> 21x21
+        self.conv2_bn = nn.BatchNorm2d(250)
+        self.conv3 = nn.Conv2d(250, 300, 9, bias=False)  # 29x29 -> 21x21
         self.conv3_bn = nn.BatchNorm2d(300)
         self.conv4 = nn.Conv2d(300, 500, 9, bias=False)  # 21x21 -> 13x13
         self.conv4_bn = nn.BatchNorm2d(500)
@@ -26,3 +26,4 @@ class DrawtexModel(nn.Module):
         x = torch.flatten(x.permute(0, 2, 3, 1), 1)
         x = self.lin1_bn(self.lin1(x))
         return x
+
