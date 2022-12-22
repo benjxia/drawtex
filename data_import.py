@@ -62,6 +62,6 @@ lab_map = {'\\Leftarrow': 0, '\\theta': 1, '\\mathcal{M}': 2, '\\mathcal{L}': 3,
 
 with open("mappings.csv", "w", newline="\n") as csvfile:
     builder = csv.writer(csvfile)
-    builder.writerow(["Latex", "Mapping"])
+    builder.writerow(["Rendering","Latex", "Mapping"])
     for latex, mapping in lab_map.items():
-        builder.writerow([latex, mapping])
+        builder.writerow([f"${latex}$", latex, mapping])
