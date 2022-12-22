@@ -14,8 +14,8 @@ class DrawtexModel(nn.Module):
         self.conv4_bn = nn.BatchNorm2d(500)
         self.conv5 = nn.Conv2d(500, 800, 9, bias=False)  # 13x13 -> 5x5
         self.conv5_bn = nn.BatchNorm2d(800)
-        self.lin1 = nn.Linear(20000, 78, bias=False)
-        self.lin1_bn = nn.BatchNorm1d(78)
+        self.lin1 = nn.Linear(20000, 326, bias=False)
+        self.lin1_bn = nn.BatchNorm1d(326)
 
     def forward(self, x: torch.Tensor):
         x: torch.Tensor = self.relu(self.conv1_bn(self.conv1(x)))
