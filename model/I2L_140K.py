@@ -18,6 +18,10 @@ class I2L_140K(Dataset):
         :param transform: Transformations to perform on outputs
         :param mode: "train", "validate", "test"
         """
+        super().__init__()
+
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+
         self.path = path
         self.dfpath = path
         self.transform = transform
@@ -28,7 +32,7 @@ class I2L_140K(Dataset):
         elif self.mode == "validate":
             self.dfpath = f"{path}/training_56/df_valid.pkl"
         elif self.mode == "test":
-            self.dfpath = "{path}/training_56/df_test.pkl"
+            self.dfpath = f"{path}/training_56/df_test.pkl"
         else:
             raise ValueError("Invalid mode")
 
@@ -56,16 +60,16 @@ class I2L_140K(Dataset):
 
         # Convert labels and image to tensor
         transform = transforms.ToTensor()
-        img_tensor = transform(img)
+        img_tensor = transform(img).to(self.device)
         label = curr_row["padded_seq"]
-        label_tensor = torch.tensor(label)
+        label_tensor = torch.tensor(label).to(self.device)
 
         if self.transform is not None:
             img_tensor = self.transform(img_tensor)
 
         # Add padding to images and labels
-        img_reshape = torch.ones(1, 128, 1088)
-        label_reshape = torch.zeros(151, dtype=torch.int32)
+        img_reshape = torch.ones(1, 128, 1088).to(self.device)
+        label_reshape = torch.zeros(151, dtype=torch.int32).to(self.device)
 
         channels = len(img_tensor)
         height = len(img_tensor[0])
@@ -75,3 +79,18 @@ class I2L_140K(Dataset):
         label_reshape[:len(label)] = label_tensor
 
         return img_reshape, label_reshape
+
+
+# For debugging purposes
+if __name__ == "__main__":
+    train_set = I2L_140K("../data/dataset5")
+
+    train_load = DataLoader(dataset=train_set,
+                            batch_size=64,
+                            num_workers=4,
+                            shuffle=True)
+
+    idx, (img, label) = next(enumerate(train_load))
+    print(img.shape)
+    x = torch.flatten(img, start_dim=2)
+    print(x.shape)
