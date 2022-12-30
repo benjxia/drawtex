@@ -7,3 +7,7 @@ matplotlib
 scipy
 opencv-python
 opencv-contrib-python
+
+Pillow
+scikit-learn
+scikit-image
