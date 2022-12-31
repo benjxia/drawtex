@@ -5,58 +5,42 @@ from DT_Dataset import DT_Dataset
 from torch.utils.data import DataLoader
 from torchvision import transforms
 
-
 class DT_Model(nn.Module):
     def __init__(self):
         super().__init__()
         self.relu = nn.ReLU()
-        self.drop = nn.Dropout2d(p=0.2)
 
-        self.conv1 = nn.Conv2d(1, 200, 9, bias=False)
-        self.norm1 = nn.BatchNorm2d(200)
+        self.drop = nn.Dropout(p=0.5)
+        self.pool = nn.MaxPool2d((2, 2), 2)
 
-        self.conv2 = nn.Conv2d(200, 300, 9, bias=False)
-        self.norm2 = nn.BatchNorm2d(300)
+        self.conv1 = nn.Conv2d(in_channels=1, out_channels=64, kernel_size=4)
+        self.norm1 = nn.BatchNorm2d(64)
 
-        self.conv3 = nn.Conv2d(300, 400, 5, bias=False)
-        self.norm3 = nn.BatchNorm2d(400)
+        self.conv2 = nn.Conv2d(in_channels=64, out_channels=128, kernel_size=4)
+        self.norm2 = nn.BatchNorm2d(128)
 
-        self.conv4 = nn.Conv2d(400, 512, 3, bias=False)
-        self.norm4 = nn.BatchNorm2d(512)
+        self.lin1 = nn.Linear(10368, 1024)
+        self.lin2 = nn.Linear(1024, 374)
 
-        self.conv5 = nn.Conv2d(512, 512, 3, bias=False)
-        self.norm5 = nn.BatchNorm2d(512)
-
-        self.lin1 = nn.Linear(225792, 374)
 
     def forward(self, x):
-        x = self.conv1(x)  # 45x45 -> 37x37
+        x = self.conv1(x)  # 45x45 -> 42x42
         x = self.norm1(x)
         x = self.relu(x)
+        x = self.pool(x)   # 42x42 -> 21x21
 
-        x = self.conv2(x)  # 37x37 -> 29x29
+        x = self.conv2(x)  # 21x21 -> 18x18
         x = self.norm2(x)
         x = self.relu(x)
-
-        x = self.drop(x)
-
-        x = self.conv3(x)  # 29x29 -> 25x25
-        x = self.norm3(x)
-        x = self.relu(x)
-
-        x = self.conv4(x)  # 25x25 -> 23x23
-        x = self.norm4(x)
-        x = self.relu(x)
-
-        x = self.conv5(x)  # 23x23 -> 21x21
-        x = self.norm5(x)
-        x = self.relu(x)
-
-        x = self.drop(x)
+        x = self.pool(x)   # 18x18 -> 9x9
 
         x = torch.flatten(x.permute(0, 2, 3, 1), 1)
+        x = self.drop(x)
 
         x = self.lin1(x)
+        x = self.relu(x)
+
+        x = self.lin2(x)
 
         return x
 
