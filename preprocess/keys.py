@@ -104,11 +104,5 @@ WORD2ID = {'\\Im': 0, 'z': 1, '\\mathcal{O}': 2, '\\triangleq': 3, ']': 4, 'p': 
            '\\nearrow': 370, '3': 371, '\\Lambda': 372, '\\wedge': 373}
 
 if __name__ == "__main__":
-    df = pd.read_csv("../data/combined.csv")
-    classes = set(df["latex"])
-    id2word = list(classes)
-    word2id = {id2word[i]: i for i in range(len(id2word))}
-
-    print(id2word)
-    print(word2id)
-    print(len(id2word))
+    for latex in WORD2ID:
+        print(f"$${latex}$$,{latex},{WORD2ID[latex]}")
