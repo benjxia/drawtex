@@ -2,5 +2,9 @@
 .vscode
 .idea
 *.pth
+*.pt
+*.pyc
 # data, theyre beefy files
 data/*
+
+client/node_modules
