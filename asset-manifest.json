@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/drawtex/static/css/main.073c9b0a.css",
+    "main.js": "/drawtex/static/js/main.9483e806.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/drawtex/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/drawtex/index.html",
+    "main.073c9b0a.css.map": "/drawtex/static/css/main.073c9b0a.css.map",
+    "main.9483e806.js.map": "/drawtex/static/js/main.9483e806.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/drawtex/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.9483e806.js"
+  ]
+}
