@@ -39,5 +39,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-canvas-draw": "^1.2.0",
+    "react-canvas-draw": "^1.2.1"
   }
 }
