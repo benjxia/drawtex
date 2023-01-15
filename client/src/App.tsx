@@ -1,21 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import CanvasDraw from "react-canvas-draw";
+import CanvasDraw from 'react-canvas-draw';
 
-function App() {
-  let i: JSX.Element = <CanvasDraw />
-  
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-          <br></br>
-          {i}
-        </p>
-      </header>
-    </div>
-  );
+interface App_Props {
+
 }
-// TODO: switch to es6?
-export default App;
+export default class App extends Component {
+  canvas: CanvasDraw | null;
+  constructor(props: App_Props) {
+    super(props);
+    this.canvas = null;
+  }
+
+  hello(): void {
+    console.log("hi");
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Edit <code>src/App.tsx</code> and save to reload.
+            <br></br>
+            <CanvasDraw ref= {CanvasDraw => (this.canvas = CanvasDraw)} 
+                        onChange={() => this.hello()}/>
+          </p>
+        </header>
+      </div>
+    );
+  }
+}
