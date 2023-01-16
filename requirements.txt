@@ -11,3 +11,4 @@ opencv-contrib-python
 Pillow
 scikit-learn
 scikit-image
+tensorflow
