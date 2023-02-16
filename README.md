@@ -1,5 +1,6 @@
 # DrawTeX
-
+## Note:
+Website still in progress. School is hard :(
 ## Raw Data
 
 We use a modified version of the HASYv2 dataset with some classes pulled from the CROHME dataset. (lim, log, and trigonometric functions)
